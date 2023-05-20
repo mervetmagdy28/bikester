@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "385491070950",
+    "project_id": "bikester-45039",
+    "storage_bucket": "bikester-45039.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385491070950:android:4088f3946c7b840d5db027",
+        "android_client_info": {
+          "package_name": "com.example.bikesterr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385491070950-igv9lske52hkiur2opr6nfsk38o17q08.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDigSfGGdP7x7YYbdZfvSmOpoY5o_1FgSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385491070950-igv9lske52hkiur2opr6nfsk38o17q08.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
