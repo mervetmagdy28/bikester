@@ -6,6 +6,9 @@ import 'package:bikesterr/presentation/screens/home_screens/profile.dart';
 import 'package:bikesterr/presentation/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+
+import '../components/custom_elevated_button.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -31,9 +34,7 @@ class _LoginState extends State<Login> {
         key: _formKey,
         child: Stack(children: [
           Container(
-            // width: double.infinity,
-            // height: double.infinity,
-            child: Image.asset('assets/bikeSharing.jpg',
+            child: Lottie.network('https://assets6.lottiefiles.com/packages/lf20_zXGe10eVTT.json',
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill),
@@ -41,14 +42,14 @@ class _LoginState extends State<Login> {
           Align(
             alignment: Alignment.center,
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               margin: const EdgeInsets.fromLTRB(0, 200, 0, 0),
               width: 300,
               height: 350,
               decoration: BoxDecoration(
                 color: const Color.fromRGBO(233, 233, 235, .85),
                 border: Border.all(width: 2),
-                borderRadius: BorderRadius.all(Radius.circular(35)),
+                borderRadius: const BorderRadius.all(Radius.circular(35)),
               ),
               child: SingleChildScrollView(
                 child: Column(
@@ -68,17 +69,7 @@ class _LoginState extends State<Login> {
                           return null;
                         },
                       ),
-                      // MyTextField(
-                      //   controller: passwordCont,
-                      //   fun: (value) {
-                      //     if (value == null || value.length < 8) {
-                      //       return 'incorrect password';
-                      //     }
-                      //     return null;
-                      //   },
-                      //   hintText: 'password',
-                      //   obscureText: true,
-                      // ),
+
                       CustomTextField(
                         myController: passwordCont,
                         label: "password",
@@ -95,6 +86,7 @@ class _LoginState extends State<Login> {
                           Expanded(
                             flex: 3,
                             child: CheckboxListTile(
+                              activeColor: Colors.orange,
                               value: check2,
                               controlAffinity: ListTileControlAffinity
                                   .leading, //checkbox at left
@@ -120,7 +112,7 @@ class _LoginState extends State<Login> {
                                   "Forgot Password?",
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
-                                    color: Colors.green,
+                                    color: Colors.orange,
                                     fontSize: 10,
                                   ),
                                 )),
@@ -130,23 +122,13 @@ class _LoginState extends State<Login> {
                       const SizedBox(
                         height: 5,
                       ),
-                      ElevatedButton(
-                        onPressed: () async{
-                          if (_formKey.currentState!.validate())  {
-                            await authCont.login(
-                                email: emailCont.text,
-                                password: passwordCont.text);
-                          }
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              Color.fromRGBO(4, 42, 80, .9)),
-                          elevation: MaterialStateProperty.all(5),
-                        ),
-                        child: const Text(
-                          'Log In',
-                        ),
-                      ),
+                      CustomElevatedButton(color: Colors.orange,onPressed: () async{
+                        if (_formKey.currentState!.validate())  {
+                          await authCont.login(
+                              email: emailCont.text,
+                              password: passwordCont.text);
+                        }
+                      },textButton: 'Log In'),
                       const SizedBox(
                         height: 5,
                       ),
@@ -159,14 +141,10 @@ class _LoginState extends State<Login> {
                           TextButton(
                             onPressed: () {
                               Get.to(() => Register());
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => const Register()),
-                              // );
+
                             },
                             child: const Text(
-                              "Sign up",
+                              "Sign up",style: TextStyle(color: Colors.orange),
                             ),
                           ),
                         ],

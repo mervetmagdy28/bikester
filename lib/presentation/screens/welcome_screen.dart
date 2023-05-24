@@ -5,6 +5,9 @@ import 'package:bikesterr/presentation/screens/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+
+import '../components/custom_elevated_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -25,88 +28,46 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: MyAppbar(
-      //   showMenuIcon: false,
-      // ),
       body: Form(
-        child: Stack(children: [
-          Container(
-            // width: double.infinity,
-            // height: double.infinity,
-            child: Image.asset('assets/bikeMount.jpg',
-                width: double.infinity,
-                height: double.infinity,
-                fit: BoxFit.fill),
-          ),
-          Container(
-            margin: EdgeInsets.all(30),
-            alignment: Alignment.topCenter,
-            child: const Text(
-              'Bikester',
-              style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-                letterSpacing: 1.5,
-                color: Colors.black,
+        child: Stack(
+            children: [
+              const SizedBox(
+                height: 50,
               ),
-            ),
+          Container(
+            child: Lottie.network('https://assets6.lottiefiles.com/packages/lf20_zXGe10eVTT.json'),
           ),
+
           Container(
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Get.to(() => Login());
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => const Login()),
-                    // );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                        Color.fromRGBO(4, 42, 80, .6)),
-                    elevation: MaterialStateProperty.all(5),
-                  ),
-                  child: const Text(
-                    'LOG IN',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
-                      color: Colors.white,
-                    ),
+                Container(
+                margin: EdgeInsets.all(30),
+                alignment: Alignment.topCenter,
+                child: const Text(
+                  'Bikester',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5,
+                    color: Colors.black,
                   ),
                 ),
+              ),
+                CustomElevatedButton(color: Colors.orange,onPressed: () {
+                  Get.to(() => const Login());
+                },textButton: 'LOG IN', ),
                 const SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Get.to(() => Register());
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => const Register()),
-                    // );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                        Color.fromRGBO(159, 159, 161, .6)),
-                    elevation: MaterialStateProperty.all(5),
-                  ),
-                  child: const Text(
-                    'SIGN UP',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
+                CustomElevatedButton(color: const Color(0xff616161),onPressed:() {
+                  Get.to(() => const Register());
+
+                },textButton: 'SIGN UP', ),
+
                 const SizedBox(
                   height: 30,
                 ),

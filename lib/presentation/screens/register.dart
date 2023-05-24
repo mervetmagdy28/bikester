@@ -3,8 +3,10 @@ import 'package:bikesterr/presentation/screens/login.dart';
 import 'package:bikesterr/presentation/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../domain/controllers/auth_controller.dart';
+import '../components/custom_elevated_button.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -33,9 +35,7 @@ class _RegisterState extends State<Register> {
         key: _formKey,
         child: Stack(children: [
           Container(
-            // width: double.infinity,
-            // height: double.infinity,
-            child: Image.asset('assets/bikeSharing.jpg',
+            child: Lottie.network('https://assets6.lottiefiles.com/packages/lf20_zXGe10eVTT.json',
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill),
@@ -85,7 +85,7 @@ class _RegisterState extends State<Register> {
                         label: "Date of Birth",
                         fun: (value) {
                           if (value == null || value.length < 8) {
-                            return 'incorrect password';
+                            return 'invalid BirthDay';
                           }
                           return null;
                         },
@@ -140,41 +140,31 @@ class _RegisterState extends State<Register> {
                         isPassword: true,
                         fun: (value) {
                           if (value == null || value.length < 8) {
-                            return 'incorrect password';
+                            return 'no match';
                           }
                           return null;
                         },
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            authCont.signUp(
-                              email: emailCont.text,
-                              password: passwordCont.text,
-                            )
-                              ..then((uid) {
-                                authCont.addUser(
-                                    userName: userNameCont.text,
-                                    dateOfBirth: dateofBirthCont.text,
-                                    phoneNumber: phoneNumberCont.text,
-                                    emergencyNumber: emergencyNumberCont.text,
-                                    bloodGroup: bloodGroupCont.text,
-                                    email: emailCont.text,
-                                    userID: uid);
-                                Get.to(() => Login());
-                              })
-                              ..onError((error, stackTrace) {});
-                          }
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              Color.fromRGBO(4, 42, 80, .9)),
-                          elevation: MaterialStateProperty.all(5),
-                        ),
-                        child: const Text(
-                          'Sign Up',
-                        ),
-                      ),
+                      CustomElevatedButton(onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          authCont.signUp(
+                            email: emailCont.text,
+                            password: passwordCont.text,
+                          )
+                            ..then((uid) {
+                              authCont.addUser(
+                                  userName: userNameCont.text,
+                                  dateOfBirth: dateofBirthCont.text,
+                                  phoneNumber: phoneNumberCont.text,
+                                  emergencyNumber: emergencyNumberCont.text,
+                                  bloodGroup: bloodGroupCont.text,
+                                  email: emailCont.text,
+                                  userID: uid);
+                              Get.to(() => Login());
+                            })
+                            ..onError((error, stackTrace) {});
+                        }
+                      },textButton: 'Sign Up',color: Colors.orange, ),
                       const SizedBox(
                         height: 5,
                       ),
@@ -187,14 +177,9 @@ class _RegisterState extends State<Register> {
                           TextButton(
                               onPressed: () {
                                 Get.to(() => Login());
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => const Login()),
-                                // );
                               },
                               child: const Text(
-                                "Log in",
+                                "Log in",style: TextStyle(color: Colors.orange),
                               ))
                         ],
                       )

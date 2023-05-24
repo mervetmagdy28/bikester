@@ -18,19 +18,19 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             )
           : null,
+
       title: const Text(
         'Bikester',
         style: TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.bold,
-          fontStyle: FontStyle.italic,
           letterSpacing: 1.5,
           color: Colors.black,
         ),
       ),
       centerTitle: true,
       elevation: 0.0,
-      backgroundColor: Color.fromRGBO(233, 233, 235, 1),
+      backgroundColor:Colors.white,
     );
   }
 

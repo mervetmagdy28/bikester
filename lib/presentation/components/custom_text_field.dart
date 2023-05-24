@@ -24,8 +24,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
           controller: widget.myController,
+          cursorColor: Colors.orange,
           obscureText: widget.isPassword ? widget.passInvisible : false,
           decoration: InputDecoration(
+
             suffixIcon: widget.isPassword
                 ? IconButton(
                     onPressed: () {
@@ -34,16 +36,20 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         //toggle
                       });
                     },
-                    icon: Icon(Icons.visibility_off_sharp))
+                    icon: const Icon(Icons.visibility_off_sharp,color: Colors.orange,))
                 : null,
             label: Text(
               widget.label!,
               style: const TextStyle(
                 fontSize: 12,
+                color: Colors.orange
               ),
             ),
             border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(25))),
+                borderRadius: BorderRadius.all(Radius.circular(25)),borderSide: BorderSide(color: Colors.black)),
+            focusedBorder:  const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25)),borderSide: BorderSide(color: Colors.black)),
+
           ),
           // The validator receives the text that the user has entered.
           validator: widget.fun),
